@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+import MainPage from './pages/MainPage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import BasketPage from './pages/BascetPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 function App() {
+  console.log('App update...')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Provider store={store}>
+        <div className='App'>
+          <div className='wrapper'>
+            <Header />
+            <div className='content'>
+              <div className='container'>
+                <Routes>
+                  <Route path='/' element={<MainPage />}></Route>
+                  <Route path='/basket' element={<BasketPage />}></Route>
+                  <Route path='*' element={<NotFoundPage />}></Route>
+                </Routes>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Provider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
