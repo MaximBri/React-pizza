@@ -1,21 +1,26 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setFilters, setCategory } from '../redux/slices/filtersSlice'
+import { setPaginIndex } from '../redux/slices/paginationSlice'
 import filters from '../data/filters'
-
 import categories from '../data/categories'
-import pageContext from '../contexts/pageContext'
 
-const Filters = ({setCategory, setFilter, filter, category}) => {
+const Filters = () => {
   console.log('Filters update...')
+  const dispatch = useDispatch()
+  const filter = useSelector((state) => state.filters.categoryId)
+  const category = useSelector((state) => state.filters.sort.id)
   const [open, setOpen] = React.useState(false)
-  const {setPaginIndex} = React.useContext(pageContext)
   const changeCateg = (categ) => {
-    setOpen(!open);
-    setCategory(categ);
+    setOpen(!open)
+    dispatch(setCategory(categ))
   }
   const changeFilter = (index) => {
-    setFilter(index)
-    setPaginIndex(1);
+    dispatch(setFilters(index))
+    dispatch(setPaginIndex(1))
   }
+  console.log(category)
   return (
     <div className='content__top'>
       <div className='categories'>
@@ -48,14 +53,20 @@ const Filters = ({setCategory, setFilter, filter, category}) => {
             />
           </svg>
           <b>Сортировка по:</b>
-          <span onClick={() => setOpen(!open)}>{categories[category].title}</span>
+          <span onClick={() => setOpen(!open)}>
+            {categories[category].title}
+          </span>
         </div>
         {open && (
           <div className='sort__popup'>
             <ul>
               {categories.map((categ, index) => {
                 return (
-                  <li onClick={() => changeCateg(index)} key={index} className={index === category ? 'active' : ''}>
+                  <li
+                    onClick={() => changeCateg(index)}
+                    key={index}
+                    className={index === category ? 'active' : ''}
+                  >
                     {categ.title}
                   </li>
                 )

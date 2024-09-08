@@ -18,8 +18,8 @@ function App() {
             <div className='content'>
               <div className='container'>
                 <Routes>
-                  <Route path='/' element={<MainPage />}></Route>
-                  <Route path='/basket' element={<BasketPage />}></Route>
+                  <Route path='/React-pizza' element={<MainPage />}></Route>
+                  <Route path='React-pizza/basket' element={<BasketPage />}></Route>
                   <Route path='*' element={<NotFoundPage />}></Route>
                 </Routes>
               </div>

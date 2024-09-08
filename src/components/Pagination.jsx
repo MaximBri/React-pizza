@@ -1,8 +1,12 @@
 import React from 'react'
-import pageContext from '../contexts/pageContext'
+
+import { setPaginIndex } from '../redux/slices/paginationSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Pagination = ({ count = 3, swap }) => {
-  const {paginIndex, setPaginIndex} = React.useContext(pageContext)
+  // console.log('Pagination update...')
+  const paginIndex = useSelector((state) => state.pagination.paginIndex)
+  const dispatch = useDispatch()
   return (
     <ul className='pagination'>
       <li onClick={() => swap(paginIndex-1)}>{'<'}</li>
@@ -10,7 +14,7 @@ const Pagination = ({ count = 3, swap }) => {
         Array.from({ length: count }).map((_, index) => {
           return (
             <li
-              onClick={() => setPaginIndex(index + 1)}
+              onClick={() => dispatch(setPaginIndex(index + 1))}
               className={index === paginIndex - 1 ? 'selected' : ''}
               key={index}
             >
