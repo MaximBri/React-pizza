@@ -12,6 +12,7 @@ const Filters = () => {
   const filter = useSelector((state) => state.filters.categoryId)
   const category = useSelector((state) => state.filters.sort.id)
   const [open, setOpen] = React.useState(false)
+  const sortRef = React.useRef()
   const changeCateg = (categ) => {
     setOpen(!open)
     dispatch(setCategory(categ))
@@ -20,6 +21,13 @@ const Filters = () => {
     dispatch(setFilters(index))
     dispatch(setPaginIndex(1))
   }
+  const sortClickEventer = (event) => {
+    if (!event.composedPath().includes(sortRef.current)) setOpen(false)
+  }
+  React.useEffect(() => {
+    document.body.addEventListener('click', event => sortClickEventer(event))
+    return ( () => document.body.removeEventListener('click', sortClickEventer))
+  }, [])
   return (
     <div className='content__top'>
       <div className='categories'>
@@ -37,7 +45,7 @@ const Filters = () => {
           })}
         </ul>
       </div>
-      <div className='sort'>
+      <div ref={sortRef} className='sort'>
         <div className='sort__label'>
           <svg
             width='10'

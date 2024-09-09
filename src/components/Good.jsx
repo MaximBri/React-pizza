@@ -1,16 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { addGood } from '../redux/slices/basketSlice'
 const Good = ({
   data: { id, title, price, imageUrl, types, sizes, category, rating },
 }) => {
-  React.useEffect(() => {
-    console.log("Good update...")
-  })
+  // React.useEffect(() => {
+  //   console.log("Good update...")
+  // })
+  const dispatch = useDispatch()
+  const pizzasData = useSelector((state) => state.basket.items);
   const heights = ['тонкое', 'традиционное']
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(pizzasData.filter((item) => item.id === id).length);
   const [size, setSize] = useState(0);
   const [type, setType] = useState(0);
+  const addPizza = () => {
+    console.log("send")
+    dispatch(addGood({id, price, title, type, size}))
+    setCount(count + 1)
+  }
   return (
     <div className='pizza-block'>
       <h4 className='pizza-block__title'>{title}</h4>
@@ -41,7 +50,7 @@ const Good = ({
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} p</div>
         <div
-          onClick={() => setCount(count + 1)}
+          onClick={() => addPizza()}
           className='button button--outline button--add'
         >
           <svg

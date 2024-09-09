@@ -67,7 +67,7 @@ const Goods = ({ API_URl }) => {
               .map((item) => <Good data={item} key={item.id} />)}
         {pizzas.length === 0 && <h1>Ничего не найдено</h1>}
       </div>
-      {countPages !== 0 && <Pagination count={countPages} swap={changePageIndex} />}
+      {countPages !== 0 && !loadData && <Pagination count={countPages} swap={changePageIndex} />}
     </>
   )
 }

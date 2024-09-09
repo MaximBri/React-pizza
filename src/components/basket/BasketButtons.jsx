@@ -21,7 +21,7 @@ const BasketButtons = () => {
           />
         </svg>
 
-        <Link to='/'>
+        <Link to='/React-pizza'>
           <span>Вернуться назад</span>
         </Link>
       </Link>
