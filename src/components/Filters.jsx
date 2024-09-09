@@ -20,7 +20,6 @@ const Filters = () => {
     dispatch(setFilters(index))
     dispatch(setPaginIndex(1))
   }
-  console.log(category)
   return (
     <div className='content__top'>
       <div className='categories'>

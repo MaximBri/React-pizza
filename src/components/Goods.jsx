@@ -4,6 +4,7 @@ import debounce from 'lodash.debounce'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setPaginIndex } from '../redux/slices/paginationSlice'
+import { setSearch1 } from '../redux/slices/searchSlice'
 import Good from './Good'
 import GoodSceleton from './GoodSceleton'
 import Search from './Search'
@@ -22,36 +23,26 @@ const Goods = ({ API_URl }) => {
   // const inputRef = React.useRef()
   const changeValueS = (text) => {
     setLoadData(true)
-    setValueS(text);
-    changeSearch(valueS);
+    
+    // text.length === 1? setValueS(''): setValueS(text)
+    setValueS(text)
+    changeSearch(valueS)
   }
   const changeSearch = React.useCallback(
     debounce((valueS) => {
-      setSearch(valueS);
+      valueS.length !== 1? dispatch(setSearch1(valueS)): dispatch(setSearch1(''))
       setLoadData(false)
-    }, 500),
-    [],
+    }, 300),
+    []
   )
   React.useEffect(() => {
-    console.log("Main!!!")
     setLoadData(true)
-    if (search) {
-      axios.get(API_URl).then((data) => {
-        setPizzas(data.data)
-        const filteredData = data.data.filter((item) =>
-          item.title.toLowerCase().includes(search.toLowerCase())
-        )
-        const countPages = Math.ceil(filteredData.length / 4)
-        setCountPages(countPages)
-        setLoadData(false)
-      })
-    } else {
-      axios.get(API_URl + `&page=${paginIndex}&limit=4`).then((data) => {
-        setPizzas(data.data.items)
-        setCountPages(data.data.meta.total_pages)
-        setLoadData(false)
-      })
-    }
+    console.log(API_URl)
+    axios.get(API_URl).then((data) => {
+      setPizzas(data.data.items)
+      setCountPages(data.data.meta.total_pages)
+      setLoadData(false)
+    })
   }, [API_URl, paginIndex, filter.categoryId, search])
   const changePageIndex = (index) => {
     if (index > 0 && index <= countPages) dispatch(setPaginIndex(index))
@@ -63,7 +54,7 @@ const Goods = ({ API_URl }) => {
         <Search text={valueS} setText={changeValueS} />
       </div>
       <div className='content__items'>
-        {loadData 
+        {loadData
           ? Array.from({ length: 4 }).map((_, index) => (
               <GoodSceleton key={index} />
             ))
@@ -74,12 +65,9 @@ const Goods = ({ API_URl }) => {
                 item.title.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => <Good data={item} key={item.id} />)}
-        {search !== '' &&
-          pizzas.filter((item) =>
-            item.title.toLowerCase().includes(search.toLowerCase())
-          ).length === 0 && <h1>Ничего не найдено</h1>}
+        {pizzas.length === 0 && <h1>Ничего не найдено</h1>}
       </div>
-      <Pagination count={countPages} swap={changePageIndex} />
+      {countPages !== 0 && <Pagination count={countPages} swap={changePageIndex} />}
     </>
   )
 }
