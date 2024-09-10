@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 const BasketButtons = () => {
   return (
     <div className='cart__bottom-buttons'>
-      <Link to='/React-pizza' className='button button--outline button--add go-back-btn'>
+      <Link
+        to='/React-pizza'
+        className='button button--outline button--add go-back-btn'
+      >
         <svg
           width='8'
           height='14'
@@ -20,10 +23,7 @@ const BasketButtons = () => {
             strokeLinejoin='round'
           />
         </svg>
-
-        <Link to='/React-pizza'>
-          <span>Вернуться назад</span>
-        </Link>
+        <span>Вернуться назад</span>
       </Link>
       <div className='button pay-btn'>
         <span>Оплатить сейчас</span>

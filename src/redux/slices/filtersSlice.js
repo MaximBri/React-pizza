@@ -17,7 +17,6 @@ const filtersSlice = createSlice({
       state.categoryId = action.payload
     },
     setCategory(state, action){
-      console.log(action.payload)
       state.sort.id = action.payload
     },
     setAllFilters(state, action){

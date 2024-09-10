@@ -20,11 +20,8 @@ const Goods = ({ API_URl }) => {
   const [search, setSearch] = React.useState('')
   const [valueS, setValueS] = React.useState('')
   const [countPages, setCountPages] = React.useState(1)
-  // const inputRef = React.useRef()
   const changeValueS = (text) => {
     setLoadData(true)
-    
-    // text.length === 1? setValueS(''): setValueS(text)
     setValueS(text)
     changeSearch(valueS)
   }
@@ -37,7 +34,6 @@ const Goods = ({ API_URl }) => {
   )
   React.useEffect(() => {
     setLoadData(true)
-    console.log(API_URl)
     axios.get(API_URl).then((data) => {
       setPizzas(data.data.items)
       setCountPages(data.data.meta.total_pages)
@@ -65,9 +61,9 @@ const Goods = ({ API_URl }) => {
                 item.title.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => <Good data={item} key={item.id} />)}
-        {pizzas.length === 0 && <h1>Ничего не найдено</h1>}
+        {pizzas.length === 0 && !loadData && <h1>Ничего не найдено</h1>}
       </div>
-      {countPages !== 0 && !loadData && <Pagination count={countPages} swap={changePageIndex} />}
+      {countPages !== 0  && <Pagination count={countPages} swap={changePageIndex} />}
     </>
   )
 }

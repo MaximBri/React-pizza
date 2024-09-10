@@ -1,9 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+
+import BasketEmpty from '../components/basket/BasketEmpty'
 import Basket from '../components/basket/Basket'
 
 const BascetPage = () => {
+  const data = useSelector((state) => state.basket.items)
   return (
-    <Basket />
+    data.length ? <Basket />: <BasketEmpty />
   )
 }
 

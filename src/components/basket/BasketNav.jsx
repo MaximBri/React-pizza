@@ -1,6 +1,11 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { clearAll } from '../../redux/slices/basketSlice'
 
 const BasketNav = () => {
+  const dispatch = useDispatch()
+  // const BasketData = useSelector((state) => state.basket.items)
   return (
     <div className='cart__top'>
       <h2 className='content__title'>
@@ -73,7 +78,7 @@ const BasketNav = () => {
           />
         </svg>
 
-        <span>Очистить корзину</span>
+        <span onClick={() => dispatch(clearAll())}>Очистить корзину</span>
       </div>
     </div>
   )

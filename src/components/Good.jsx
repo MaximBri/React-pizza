@@ -6,20 +6,16 @@ import { addGood } from '../redux/slices/basketSlice'
 const Good = ({
   data: { id, title, price, imageUrl, types, sizes, category, rating },
 }) => {
-  // React.useEffect(() => {
-  //   console.log("Good update...")
-  // })
   const dispatch = useDispatch()
-  const pizzasData = useSelector((state) => state.basket.items);
+  const pizzasData = useSelector((state) => state.basket.items)
   const heights = ['тонкое', 'традиционное']
-  const [count, setCount] = useState(pizzasData.filter((item) => item.id === id).length);
-  const [size, setSize] = useState(0);
-  const [type, setType] = useState(0);
-  const addPizza = () => {
-    console.log("send")
-    dispatch(addGood({id, price, title, type, size}))
-    setCount(count + 1)
-  }
+  const [size, setSize] = useState(0)
+  const [type, setType] = useState(0)
+  const addPizza = () => dispatch(addGood({ id, price, title, type, size, sizes }))
+  let pizzaCount = 0;
+  pizzasData.map((item) => {
+    if (item.id === id) pizzaCount += item.count
+  })
   return (
     <div className='pizza-block'>
       <h4 className='pizza-block__title'>{title}</h4>
@@ -31,7 +27,9 @@ const Good = ({
                 {heights[index]}
               </li>
             ) : (
-              <li onClick={() => setType(index)} key={index}>{heights[index]}</li>
+              <li onClick={() => setType(index)} key={index}>
+                {heights[index]}
+              </li>
             )
           })}
         </ul>
@@ -42,7 +40,9 @@ const Good = ({
                 {item} см.
               </li>
             ) : (
-              <li onClick={() => setSize(index)} key={index}>{item} см.</li>
+              <li onClick={() => setSize(index)} key={index}>
+                {item} см.
+              </li>
             )
           })}
         </ul>
@@ -66,7 +66,7 @@ const Good = ({
             />
           </svg>
           <span>Добавить</span>
-          <i>{count}</i>
+          <i>{pizzaCount}</i>
         </div>
       </div>
     </div>

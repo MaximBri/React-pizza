@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const BasketEmpty = () => {
   return (
@@ -12,10 +13,9 @@ const BasketEmpty = () => {
           <br />
           Для того, чтобы заказать пиццу, перейди на главную страницу.
         </p>
-        <img src='/img/empty-cart.png' alt='Empty cart' />
-        <a href='/' class='button button--black'>
+        <Link to='/React-pizza' class='button button--black'>
           <span>Вернуться назад</span>
-        </a>
+        </Link>
       </div>
     </div>
   )

@@ -1,6 +1,20 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
-const BasketItem = () => {
+import { addGood, deleteGood, deleteGoods } from '../../redux/slices/basketSlice'
+
+const BasketItem = ({data}) => {
+  const dispatch = useDispatch()
+  const heights = ['тонкое', 'традиционное']
+  const addPizza = () => {
+    dispatch(addGood({id: data.id, price: data.price, title: data.title, type: data.type, size: data.size, sizes: data.sizes}))
+  }
+  const deletePizza = () => {
+    dispatch(deleteGood({id: data.id, size: data.size, type: data.type}))
+  }
+  const deletePizzas = () => {
+    dispatch(deleteGoods({id: data.id, size: data.size, type: data.type}))
+  }
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
@@ -11,11 +25,11 @@ const BasketItem = () => {
         />
       </div>
       <div className='cart__item-info'>
-        <h3>Сырный цыпленок</h3>
-        <p>тонкое тесто, 26 см.</p>
+        <h3>{data.title}</h3>
+        <p>{heights[data.type]}, {data.sizes[data.size]} см.</p>
       </div>
       <div className='cart__item-count'>
-        <div className='button button--outline button--circle cart__item-count-minus'>
+        <div onClick={() => deletePizza()} className='button button--outline button--circle cart__item-count-minus'>
           <svg
             width='10'
             height='10'
@@ -33,8 +47,8 @@ const BasketItem = () => {
             />
           </svg>
         </div>
-        <b>2</b>
-        <div className='button button--outline button--circle cart__item-count-plus'>
+        <b>{data.count}</b>
+        <div onClick={() => addPizza()} className='button button--outline button--circle cart__item-count-plus'>
           <svg
             width='10'
             height='10'
@@ -54,10 +68,10 @@ const BasketItem = () => {
         </div>
       </div>
       <div className='cart__item-price'>
-        <b>770 ₽</b>
+        <b>{data.price * data.count} ₽</b>
       </div>
       <div className='cart__item-remove'>
-        <div className='button button--outline button--circle'>
+        <div onClick={() => deletePizzas()} className='button button--outline button--circle'>
           <svg
             width='10'
             height='10'
