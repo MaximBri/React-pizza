@@ -17,16 +17,18 @@ const BasketItem = ({data}) => {
   }
   return (
     <div className='cart__item'>
-      <div className='cart__item-img'>
-        <img
-          className='pizza-block__image'
-          src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
-          alt='Pizza'
-        />
-      </div>
-      <div className='cart__item-info'>
-        <h3>{data.title}</h3>
-        <p>{heights[data.type]}, {data.sizes[data.size]} см.</p>
+      <div className='cart__item_top'>
+        <div className='cart__item-img'>
+          <img
+            className='pizza-block__image'
+            src='https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg'
+            alt='Pizza'
+          />
+        </div>
+        <div className='cart__item-info'>
+          <h3>{data.title}</h3>
+          <p>{heights[data.type]}, {data.sizes[data.size]} см.</p>
+        </div>
       </div>
       <div className='cart__item-count'>
         <div onClick={() => deletePizza()} className='button button--outline button--circle cart__item-count-minus'>

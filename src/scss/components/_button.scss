@@ -146,3 +146,23 @@
     }
   }
 }
+
+@media(max-width: 768px){
+  .button--add span{
+    font-size: 14px;
+  }
+  .button{
+    padding: 5px 10px;
+    // min-width: 70px;
+    &__delimiter{
+      // height: 15px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    &--cart{
+      span{
+        font-size: 12px;
+      }
+    }
+  }
+}

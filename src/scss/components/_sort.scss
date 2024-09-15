@@ -36,9 +36,6 @@
       overflow: hidden;
       position: relative;
       li {
-        // position: absolute;
-        // top: 0;
-        // right: 0;
         z-index: 500;
         padding: 12px 20px;
         cursor: pointer;
@@ -53,6 +50,20 @@
           color: $orange;
         }
       }
+    }
+  }
+}
+@media (max-width: 1100px){
+  .sort {
+    &__label {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 510px){
+  .sort {
+    &__label {
+      font-size: 12px;
     }
   }
 }

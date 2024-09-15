@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { setPaginIndex } from '../redux/slices/paginationSlice'
 import { setSearch1 } from '../redux/slices/searchSlice'
+import { setPizzas } from '../redux/slices/pizzasSlice'
 import Good from './Good'
 import GoodSceleton from './GoodSceleton'
 import Search from './Search'
@@ -15,11 +16,11 @@ const Goods = ({ API_URl }) => {
   const dispatch = useDispatch()
   const paginIndex = useSelector((state) => state.pagination.paginIndex)
   const filter = useSelector((state) => state.filters)
-  const [pizzas, setPizzas] = React.useState([])
   const [loadData, setLoadData] = React.useState(true)
   const [search, setSearch] = React.useState('')
   const [valueS, setValueS] = React.useState('')
   const [countPages, setCountPages] = React.useState(1)
+  const pizzas = useSelector((state) => state.pizzas.items)
   const changeValueS = (text) => {
     setLoadData(true)
     setValueS(text)
@@ -35,9 +36,12 @@ const Goods = ({ API_URl }) => {
   React.useEffect(() => {
     setLoadData(true)
     axios.get(API_URl).then((data) => {
-      setPizzas(data.data.items)
+      dispatch(setPizzas(data.data.items))
       setCountPages(data.data.meta.total_pages)
       setLoadData(false)
+    }).catch((err) => {
+      alert("Ошибка при получении пицц")
+      console.log(err)
     })
   }, [API_URl, paginIndex, filter.categoryId, search])
   const changePageIndex = (index) => {

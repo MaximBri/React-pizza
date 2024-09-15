@@ -3,6 +3,7 @@ import filters from './slices/filtersSlice'
 import pagination from './slices/paginationSlice'
 import search from './slices/searchSlice'
 import basket from './slices/basketSlice'
+import pizzas from './slices/pizzasSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     pagination,
     search,
     basket,
+    pizzas,
   },
 })

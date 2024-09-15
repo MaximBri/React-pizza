@@ -10,7 +10,7 @@ const Header = () => {
   const basketDataCount = useSelector((state) => state.basket.count)
   return (
     <div className='header'>
-        <div className='container'>
+        <div className='container header_wrapper'>
           <Link to='/React-pizza' className='header__logo'>
             <img width='38' src={logo} alt='Pizza logo' />
             <div>
