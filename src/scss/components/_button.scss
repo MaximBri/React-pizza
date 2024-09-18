@@ -53,7 +53,7 @@
     }
   }
 
-  &--outline {
+  &--outline, &-delete {
     background-color: #fff;
     border-color: $orange;
     &,
@@ -148,14 +148,54 @@
 }
 
 @media(max-width: 768px){
+  .cart__item-remove{
+    .button {
+      &:hover,
+      &:active {
+        border-color: darken($color: $gray-line, $amount: 10);
+        background-color: #fff;
+      }
+    }
+  }
+  .button--add:hover{
+    // background-color: #fff;
+    i {
+      background-color: $orange;
+      color: #fff;
+    }
+  }
+  .button--outline:hover{
+    background-color: #fff;
+      &,
+      span {
+        color: $orange;
+      }
+
+      svg {
+        path {
+          fill: $orange;
+        }
+      }
+  }
+  .button-delete:hover{
+    svg {
+      path {
+        fill: #dddddd;
+      }
+    }
+  }
+  .button{
+    transition: all 0s;
+  }
+  .button--black:hover, .button--black:active{
+    background-color: $black;
+  }
   .button--add span{
     font-size: 14px;
   }
   .button{
     padding: 5px 10px;
-    // min-width: 70px;
     &__delimiter{
-      // height: 15px;
       margin-left: 10px;
       margin-right: 10px;
     }

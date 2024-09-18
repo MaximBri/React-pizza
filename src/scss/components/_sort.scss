@@ -58,10 +58,40 @@
     &__label {
       font-size: 14px;
     }
+    &__popup {
+      font-size: 14px;
+      position: absolute;
+      right: 0;
+      margin-top: 15px;
+      border-radius: 10px;
+      padding: 10px 0;
+      width: 140px;
+    }
+  }
+}
+@media (max-width: 768px){
+  .sort__popup{
+    font-size: 12px;
+    ul{
+      li{
+        &:hover{
+          background: #ffffff;
+        }
+      }
+    }
   }
 }
 @media (max-width: 510px){
   .sort {
+    &__popup {
+      // font-size: 14px;
+      position: absolute;
+      right: 0;
+      margin-top: 15px;
+      border-radius: 10px;
+      padding: 5px 0;
+      width: 120px;
+    }
     &__label {
       font-size: 12px;
     }

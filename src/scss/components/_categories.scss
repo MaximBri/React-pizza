@@ -6,6 +6,8 @@
     gap: 10px;
     flex-wrap: wrap;
     li {
+      outline: none;
+      user-select: none;
       background-color: #f9f9f9;
       padding: 13px 30px;
       border-radius: 30px;
@@ -36,6 +38,18 @@
       li{
         padding: 5px 15px;
         font-size: 14px;
+      }
+    }
+  }
+}
+@media (max-width: 768px){
+  .categories{
+    ul{
+      li{
+        transition: all 0s;
+        :hover{
+          background-color: #f9f9f9
+        }
       }
     }
   }
