@@ -3,7 +3,7 @@ import axios from 'axios'
 import debounce from 'lodash.debounce'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setPaginIndex } from '../redux/slices/paginationSlice'
+import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice'
 import { setSearch1 } from '../redux/slices/searchSlice'
 import { setPizzas } from '../redux/slices/pizzasSlice'
 import Good from './Good'
@@ -14,7 +14,8 @@ import Pagination from './Pagination'
 const Goods = ({ API_URl }) => {
   // console.log('Goods update...')
   const dispatch = useDispatch()
-  const paginIndex = useSelector((state) => state.pagination.paginIndex)
+  const paginIndex = useSelector(selectPaginIndex)
+  // const paginIndex = useSelector((state) => state.pagination.paginIndex)
   const filter = useSelector((state) => state.filters)
   const [loadData, setLoadData] = React.useState(true)
   const [search, setSearch] = React.useState('')

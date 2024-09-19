@@ -6,16 +6,18 @@ import qs from 'qs'
 import Goods from './Goods'
 import Filters from './Filters'
 import categories from '../data/categories'
+import { selectPaginIndex } from '../redux/slices/paginationSlice'
+import { selectSearch } from '../redux/slices/searchSlice'
 
 const API_URl = 'https://45f0a3a14b0030e3.mokky.dev/Items'
 
 const Main = () => {
   // console.log('Main update...')
   const navigate = useNavigate()
-  const paginIndex = useSelector((state) => state.pagination.paginIndex)
+  const paginIndex = useSelector(selectPaginIndex)
+  const search = useSelector(selectSearch)
   const filter = useSelector((state) => state.filters)
-  const category = useSelector((state) => state.filters.sort.id)
-  const search = useSelector((state) => state.search.value)
+  const category = filter.sort.id;
   const addSort = 'sortBy=' + categories[category].tech + '&'
   const addFilter = filter.categoryId ? 'category=' + filter.categoryId + '&': ''
   const addSearch = search ? 'title=*' + search + '*&': ''

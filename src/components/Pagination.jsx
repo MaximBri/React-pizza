@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { setPaginIndex } from '../redux/slices/paginationSlice'
+import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Pagination = ({ count = 3, swap }) => {
   // console.log('Pagination update...')
-  const paginIndex = useSelector((state) => state.pagination.paginIndex)
+  const paginIndex = useSelector(selectPaginIndex)
   const dispatch = useDispatch()
   return (
     <ul className='pagination'>
