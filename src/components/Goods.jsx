@@ -15,7 +15,6 @@ const Goods = ({ API_URl }) => {
   // console.log('Goods update...')
   const dispatch = useDispatch()
   const paginIndex = useSelector(selectPaginIndex)
-  // const paginIndex = useSelector((state) => state.pagination.paginIndex)
   const filter = useSelector((state) => state.filters)
   const [loadData, setLoadData] = React.useState(true)
   const [search, setSearch] = React.useState('')
@@ -23,6 +22,7 @@ const Goods = ({ API_URl }) => {
   const [countPages, setCountPages] = React.useState(1)
   const pizzas = useSelector((state) => state.pizzas.items)
   const changeValueS = (text) => {
+    dispatch(setPaginIndex(1))
     setLoadData(true)
     setValueS(text)
     changeSearch(valueS)
