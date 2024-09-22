@@ -1,11 +1,12 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
+
 import MainPage from './pages/MainPage'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
 import BasketPage from './pages/BascetPage'
 import NotFoundPage from './pages/NotFoundPage'
+import MainLayout from './layouts/MainLayout'
 
 function App() {
   console.log('App update...')
@@ -13,18 +14,13 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <div className='App'>
-          <div className='wrapper'>
-            <Header />
-            <div className='content'>
-              <div className='container'>
-                <Routes>
-                  <Route path='/React-pizza' element={<MainPage />}></Route>
-                  <Route path='React-pizza/basket' element={<BasketPage />}></Route>
-                  <Route path='*' element={<NotFoundPage />}></Route>
-                </Routes>
-              </div>
-            </div>
-          </div>
+          <Routes>
+            <Route path='/React-pizza' element={<MainLayout/>}>
+              <Route path='' element={<MainPage />}></Route>
+              <Route path='React-pizza/basket' element={<BasketPage />}></Route>
+              <Route path='*' element={<NotFoundPage />}></Route>
+            </Route>
+          </Routes>
         </div>
       </Provider>
     </BrowserRouter>

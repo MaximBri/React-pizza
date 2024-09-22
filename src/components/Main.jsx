@@ -1,12 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 import qs from 'qs'
 
 import Goods from './Goods'
 import Filters from './Filters'
 import categories from '../data/categories'
-import { selectPaginIndex } from '../redux/slices/paginationSlice'
+import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice'
 import { selectSearch } from '../redux/slices/searchSlice'
 
 const API_URl = 'https://45f0a3a14b0030e3.mokky.dev/Items'
@@ -24,12 +24,13 @@ const Main = () => {
   let addUrl = `${API_URl}?${addFilter}${addSort}${addSearch}page=${paginIndex}&limit=4`
   React.useEffect(() => {
     const query = qs.stringify({
-      page: paginIndex,
+      page: paginIndex? paginIndex: 1,
       category: filter.categoryId,
       sort: categories[filter.sort.id]?.tech,
     })
     navigate(`?${query}`)
   }, [paginIndex, filter.categoryId, filter.sort.id, navigate])
+  
   return (
     <>
         <Filters />
