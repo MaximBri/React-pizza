@@ -6,7 +6,7 @@ import { setPaginIndex } from '../redux/slices/paginationSlice'
 import filters from '../data/filters'
 import categories from '../data/categories'
 
-const Filters = () => {
+const Filters: React.FC = () => {
   console.log('Filters update...')
   const dispatch = useDispatch()
   const filter = useSelector<any, number>((state) => state.filters.categoryId)

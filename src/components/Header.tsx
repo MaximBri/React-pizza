@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import logo from '../data/img/pizza-logo.svg';
 
-const Header = () => {
+const Header: React.FC = () => {
   console.log("Header update...")
   const basketDataPrice = useSelector<any, number>((state) => state.basket.totalPrice)
   const basketDataCount = useSelector<any, number>((state) => state.basket.count)

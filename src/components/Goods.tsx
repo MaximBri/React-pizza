@@ -15,14 +15,6 @@ import Pagination from './Pagination'
 interface GoodsProps {
   API_URl: string;
 }
-interface itemProps {
-  id: number;
-  imageUrl: string;
-  size: number;
-}
-interface GoodsInterface{
-  data: itemProps;
-}
 const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
   type Filter = {
     categoryId: number

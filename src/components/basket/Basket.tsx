@@ -6,7 +6,7 @@ import BasketItem from './BasketItem'
 import BasketButtons from './BasketButtons'
 import BasketInfo from './BasketInfo'
 
-const Basket = () => {
+const Basket: React.FC = () => {
   const pizzasData = useSelector<any, []>((state) => state.basket.items)
   return (
     <div className='container--cart'>

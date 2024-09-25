@@ -2,7 +2,7 @@ import React from 'react'
 import '../scss/app.scss'
 import Main from '../components/Main'
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
   return <Main />
 }
 

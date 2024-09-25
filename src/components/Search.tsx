@@ -1,7 +1,7 @@
 import React from 'react'
 type SearchProps = {
   text: string,
-  setText: any,
+  setText: (str: string) => void,
 }
 const Search:React.FC<SearchProps> = ({ text, setText}) => {
   return (

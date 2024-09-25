@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const BasketButtons = () => {
+const BasketButtons: React.FC = () => {
   return (
     <div className='cart__bottom-buttons'>
       <Link

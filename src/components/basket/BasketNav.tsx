@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { clearAll } from '../../redux/slices/basketSlice'
 
-const BasketNav = () => {
+const BasketNav: React.FC = () => {
   const dispatch = useDispatch()
   // const BasketData = useSelector((state) => state.basket.items)
   return (

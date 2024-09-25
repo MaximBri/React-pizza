@@ -3,17 +3,32 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { addGood } from '../redux/slices/basketSlice'
-const Good = ({
+type GoodProps = {
+  data: Item
+}
+type Item = {
+  id: number
+  title: string
+  price: number
+  imageUrl: string
+  types: []
+  sizes: []
+  category: number
+  rating: number
+  count: number
+}
+const Good: React.FC<GoodProps> = ({
   data: { id, title, price, imageUrl, types, sizes, category, rating },
 }) => {
   const dispatch = useDispatch()
-  const pizzasData = useSelector((state) => state.basket.items)
+  const pizzasData = useSelector<any, Item[]>((state) => state.basket.items)
   const heights = ['тонкое', 'традиционное']
   const [size, setSize] = useState(0)
   const [type, setType] = useState(0)
-  const addPizza = () => dispatch(addGood({ id, price, title, type, size, sizes }))
-  let pizzaCount = 0;
-  pizzasData.map((item) => {
+  const addPizza = () =>
+    dispatch(addGood({ id, price, title, type, size, sizes }))
+  let pizzaCount = 0
+  pizzasData.map((item: Item) => {
     if (item.id === id) pizzaCount += item.count
   })
   return (
@@ -21,7 +36,7 @@ const Good = ({
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>
-          {types.map((item, index) => {
+          {types.map((item: Item, index: number) => {
             return index === type ? (
               <li className='active' key={index}>
                 {heights[index]}

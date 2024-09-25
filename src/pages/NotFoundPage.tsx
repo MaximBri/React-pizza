@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   return <h1>Страница не найдена(</h1>
 }
 

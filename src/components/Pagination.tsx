@@ -4,8 +4,8 @@ import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice
 import { useDispatch, useSelector } from 'react-redux'
 
 type PaginationProps = {
-  count: number
-  swap: any
+  count: number,
+  swap: (int: number) => void; 
 }
 const Pagination: React.FC<PaginationProps> = ({ count = 3, swap }) => {
   // console.log('Pagination update...')
