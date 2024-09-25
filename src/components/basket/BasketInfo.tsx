@@ -1,8 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-const BasketInfo = () => {
-  const BasketInfo = useSelector((state) => state.basket)
+interface Basket{
+  count:number;
+  totalPrice: number;
+}
+
+const BasketInfo: React.FC = () => {
+  const BasketInfo = useSelector<any, Basket>((state) => state.basket)
   return (
     <div className='cart__bottom-details'>
       <span>

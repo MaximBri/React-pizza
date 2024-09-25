@@ -25,7 +25,7 @@ const basketSlice = createSlice({
       state.totalPrice += action.payload.price
       state.count += 1
     },
-    clearAll(state, action) {
+    clearAll(state) {
       state.items = []
       state.totalPrice = 0
       state.count = 0

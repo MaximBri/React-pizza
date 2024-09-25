@@ -12,34 +12,52 @@ import Good from './Good'
 import GoodSceleton from './GoodSceleton'
 import Search from './Search'
 import Pagination from './Pagination'
-
-const Goods = ({ API_URl }) => {
+interface GoodsProps {
+  API_URl: string;
+}
+interface itemProps {
+  id: number;
+  imageUrl: string;
+  size: number;
+}
+interface GoodsInterface{
+  data: itemProps;
+}
+const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
+  type Filter = {
+    categoryId: number
+    sort: {
+      id: number
+      title: string
+      tech: string
+    }
+  }
   // console.log('Goods update...')
   const dispatch = useDispatch()
   const paginIndex = useSelector(selectPaginIndex)
-  const search = useSelector((state) => state.search.value)
-  const filter = useSelector((state) => state.filters)
-  const [fetch, setFetch] = React.useState('')
-  const [loadData, setLoadData] = React.useState(true)
-  const [countPages, setCountPages] = React.useState(1)
-  const pizzas = useSelector((state) => state.pizzas.items)
-  const debounce = (funct, wait) => {
-    let timeout
-    return function (...args) {
+  const search = useSelector<any, string>((state) => state.search.value)
+  const filter = useSelector<any, Filter>((state) => state.filters)
+  const [fetch, setFetch] = React.useState<string>('')
+  const [loadData, setLoadData] = React.useState<boolean>(true)
+  const [countPages, setCountPages] = React.useState<number>(1)
+  const pizzas = useSelector<any, []>((state) => state.pizzas.items)
+  const debounce = <T extends (...args: any[]) => any> (funct: T, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
       const context = this
       clearTimeout(timeout)
       timeout = setTimeout(() => funct.apply(context, args), wait)
     }
   }
-  const onChangeInput = (text) => {
+  const onChangeInput = (text :string) => {
     dispatch(setSearch(text))
     dispatch(setPaginIndex(1))
   }
   const debouncedDispatch = React.useCallback(
-    debounce((text) => onChangeInput(text), 350),
+    debounce((text :string) => onChangeInput(text), 350),
     [dispatch]
   )
-  const changeSearch = (text) => {
+  const changeSearch = (text :string) => {
     debouncedDispatch(text)
     setFetch(text)
   }
@@ -58,7 +76,7 @@ const Goods = ({ API_URl }) => {
       })
   }, [API_URl, paginIndex, filter.categoryId, search, dispatch])
 
-  const changePageIndex = (index) => {
+  const changePageIndex = (index : number) => {
     if (index > 0 && index <= countPages) {
       dispatch(setPaginIndex(index))
     }
@@ -74,7 +92,7 @@ const Goods = ({ API_URl }) => {
           ? Array.from({ length: 4 }).map((_, index) => (
               <GoodSceleton key={index} />
             ))
-          : pizzas.map((item) => <Good data={item} key={item.id} />)}
+          : pizzas.map((item, i) => <Good data={item} key={i} />)}
         {pizzas.length === 0 && !loadData && <h1>Ничего не найдено</h1>}
       </div>
       {countPages !== 0 && (

@@ -9,24 +9,24 @@ import categories from '../data/categories'
 const Filters = () => {
   console.log('Filters update...')
   const dispatch = useDispatch()
-  const filter = useSelector((state) => state.filters.categoryId)
-  const category = useSelector((state) => state.filters.sort.id)
-  const [open, setOpen] = React.useState(false)
-  const sortRef = React.useRef()
-  const changeCateg = (categ) => {
+  const filter = useSelector<any, number>((state) => state.filters.categoryId)
+  const category = useSelector<any, number>((state) => state.filters.sort.id)
+  const [open, setOpen] = React.useState<Boolean>(false)
+  const sortRef = React.useRef<HTMLDivElement>(null)
+  const changeCateg = (categ: number) => {
     setOpen(!open)
     dispatch(setCategory(categ))
   }
-  const changeFilter = (index) => {
+  const changeFilter = (index: number) => {
     dispatch(setFilters(index))
     dispatch(setPaginIndex(1))
   }
-  const sortClickEventer = (event) => {
-    if (!event.composedPath().includes(sortRef.current)) setOpen(false)
+  const sortClickEventer = (event:MouseEvent) => {
+    if(sortRef.current) if (!event.composedPath().includes(sortRef.current)) setOpen(false)
   }
   React.useEffect(() => {
-    document.body.addEventListener('click', event => sortClickEventer(event))
-    return ( () => document.body.removeEventListener('click', sortClickEventer))
+    document.body.addEventListener('click', (event) => sortClickEventer(event))
+    return () => document.body.removeEventListener('click', sortClickEventer)
   }, [])
   return (
     <div className='content__top'>

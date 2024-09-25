@@ -6,8 +6,8 @@ import logo from '../data/img/pizza-logo.svg';
 
 const Header = () => {
   console.log("Header update...")
-  const basketDataPrice = useSelector((state) => state.basket.totalPrice)
-  const basketDataCount = useSelector((state) => state.basket.count)
+  const basketDataPrice = useSelector<any, number>((state) => state.basket.totalPrice)
+  const basketDataCount = useSelector<any, number>((state) => state.basket.count)
   return (
     <div className='header'>
         <div className='container header_wrapper'>

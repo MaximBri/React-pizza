@@ -7,7 +7,7 @@ import BasketButtons from './BasketButtons'
 import BasketInfo from './BasketInfo'
 
 const Basket = () => {
-  const pizzasData = useSelector((state) => state.basket.items)
+  const pizzasData = useSelector<any, []>((state) => state.basket.items)
   return (
     <div className='container--cart'>
       <div className='cart'>

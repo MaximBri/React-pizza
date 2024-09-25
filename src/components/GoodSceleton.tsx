@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ContentLoader from 'react-content-loader'
 
-const GoodSceleton = () => {
-  const [width, setWidth] = useState(280)
-  const [height, setHeight] = useState(190)
+const GoodSceleton:React.FC = () => {
+  const [width, setWidth] = useState<number>(280)
+  const [height, setHeight] = useState<number>(190)
 
   useEffect(() => {
     const handleResize = () => {

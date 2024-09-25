@@ -3,7 +3,19 @@ import { useDispatch } from 'react-redux'
 
 import { addGood, deleteGood, deleteGoods } from '../../redux/slices/basketSlice'
 
-const BasketItem = ({data}) => {
+interface Data {
+  data: {
+    id: number,
+    price: number,
+    title: string,
+    type: number,
+    size: number,
+    count: number,
+    sizes: []
+  }
+}
+
+const BasketItem:React.FC<Data> = ({data}) => {
   const dispatch = useDispatch()
   const heights = ['тонкое', 'традиционное']
   const addPizza = () => {

@@ -5,7 +5,7 @@ import BasketEmpty from '../components/basket/BasketEmpty'
 import Basket from '../components/basket/Basket'
 
 const BascetPage = () => {
-  const data = useSelector((state) => state.basket.items)
+  const data = useSelector<any, []>((state) => state.basket.items)
   return (
     data.length ? <Basket />: <BasketEmpty />
   )

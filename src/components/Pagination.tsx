@@ -3,9 +3,13 @@ import React from 'react'
 import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
-const Pagination = ({ count = 3, swap }) => {
+type PaginationProps = {
+  count: number
+  swap: any
+}
+const Pagination: React.FC<PaginationProps> = ({ count = 3, swap }) => {
   // console.log('Pagination update...')
-  const paginIndex = useSelector(selectPaginIndex)
+  const paginIndex = useSelector<any, number>(selectPaginIndex)
   const dispatch = useDispatch()
   return (
     <ul className='pagination'>
