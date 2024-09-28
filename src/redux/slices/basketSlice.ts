@@ -1,6 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+interface ItemType {
+  id: number
+  size: number
+  type: number
+  price: number
+  title: string
+  sizes: []
+}
+interface ItemsType {
+  totalPrice: number
+  count: number
+  items: ItemTypeWithCount[]
+}
+type ItemTypeWithCount = ItemType & {
+  count: number
+}
+type DeleteType = {
+  id: number
+  size: number
+  type: number
+}
+
+const initialState: ItemsType = {
   totalPrice: 0,
   count: 0,
   items: [],
@@ -10,10 +32,15 @@ const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addGood(state, action) {
+    addGood(
+      state,
+      action: {
+        payload: ItemType
+      }
+    ) {
       let check = false
-      const { id, size, type } = { ...action.payload }
-      state.items.map((item) => {
+      const { id, size, type }: ItemType = { ...action.payload }
+      state.items.map((item: ItemTypeWithCount) => {
         if (id === item.id && size === item.size && type === item.type) {
           item.count += 1
           check = true
@@ -31,7 +58,8 @@ const basketSlice = createSlice({
       state.count = 0
     },
     deleteGood(state, action) {
-      const { id, size, type } = action.payload
+      const { id, size, type }: DeleteType =
+        action.payload
       state.items.map((item, i) => {
         if (item.id === id && item.size === size && item.type === type) {
           item.count === 1 ? state.items.splice(i, 1) : (item.count -= 1)
@@ -41,7 +69,8 @@ const basketSlice = createSlice({
       state.count -= 1
     },
     deleteGoods(state, action) {
-      const { id, size, type } = action.payload
+      const { id, size, type }: DeleteType =
+        action.payload
       state.items.map((item, i) => {
         if (item.id === id && item.size === size && item.type === type) {
           state.count -= item.count
