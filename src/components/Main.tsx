@@ -29,7 +29,7 @@ const Main: React.FC = () => {
   const search = useSelector<any, string>(selectSearch)
   const filter = useSelector<any, Filter>((state) => state.filters)
   const category = filter.sort.id
-  const addSort :string = 'sortBy=' + categories[category].tech + '&'
+  const addSort: string = 'sortBy=' + categories[category].tech + '&'
   const addFilter = filter.categoryId
     ? 'category=' + filter.categoryId + '&'
     : ''

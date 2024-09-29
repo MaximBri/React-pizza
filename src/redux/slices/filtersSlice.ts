@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface FilterType {
   categoryId: number
@@ -30,7 +30,7 @@ const filtersSlice = createSlice({
     },
     setAllFilters(
       state,
-      action: { payload: { category: number; sort: string } }
+      action: PayloadAction<{ category: number; sort: string }>
     ) {
       state.categoryId = action.payload.category
       state.sort.tech = action.payload.sort

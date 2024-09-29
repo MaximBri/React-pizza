@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface ItemType {
   id: number
   imageUrl: string
@@ -15,7 +15,7 @@ const pizzasSlice = createSlice({
   name: 'pizzas',
   initialState,
   reducers: {
-    setPizzas(state, action: {payload: ItemType[]}) {
+    setPizzas(state, action: PayloadAction<ItemType[]>) {
       state.items = action.payload
     },
   },

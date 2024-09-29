@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface ItemType {
   id: number
@@ -32,12 +32,7 @@ const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addGood(
-      state,
-      action: {
-        payload: ItemType
-      }
-    ) {
+    addGood(state, action: PayloadAction<ItemType>) {
       let check = false
       const { id, size, type }: ItemType = { ...action.payload }
       state.items.map((item: ItemTypeWithCount) => {
@@ -58,8 +53,7 @@ const basketSlice = createSlice({
       state.count = 0
     },
     deleteGood(state, action) {
-      const { id, size, type }: DeleteType =
-        action.payload
+      const { id, size, type }: DeleteType = action.payload
       state.items.map((item, i) => {
         if (item.id === id && item.size === size && item.type === type) {
           item.count === 1 ? state.items.splice(i, 1) : (item.count -= 1)
@@ -69,8 +63,7 @@ const basketSlice = createSlice({
       state.count -= 1
     },
     deleteGoods(state, action) {
-      const { id, size, type }: DeleteType =
-        action.payload
+      const { id, size, type }: DeleteType = action.payload
       state.items.map((item, i) => {
         if (item.id === id && item.size === size && item.type === type) {
           state.count -= item.count

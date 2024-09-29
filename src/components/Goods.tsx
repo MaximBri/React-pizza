@@ -12,10 +12,7 @@ import Good from './Good'
 import GoodSceleton from './GoodSceleton'
 import Search from './Search'
 import Pagination from './Pagination'
-interface GoodsProps {
-  API_URl: string;
-}
-const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
+const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
   type Filter = {
     categoryId: number
     sort: {
@@ -24,7 +21,7 @@ const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
       tech: string
     }
   }
-  // console.log('Goods update...')
+  console.log('Goods update...')
   const dispatch = useDispatch()
   const paginIndex = useSelector(selectPaginIndex)
   const search = useSelector<any, string>((state) => state.search.value)
@@ -33,23 +30,26 @@ const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
   const [loadData, setLoadData] = React.useState<boolean>(true)
   const [countPages, setCountPages] = React.useState<number>(1)
   const pizzas = useSelector<any, []>((state) => state.pizzas.items)
-  const debounce = <T extends (...args: any[]) => any> (funct: T, wait: number) => {
-    let timeout: ReturnType<typeof setTimeout> | undefined;
+  const debounce = <T extends (...args: any[]) => any>(
+    funct: T,
+    wait: number
+  ) => {
+    let timeout: ReturnType<typeof setTimeout> | undefined
     return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
       const context = this
       clearTimeout(timeout)
       timeout = setTimeout(() => funct.apply(context, args), wait)
     }
   }
-  const onChangeInput = (text :string) => {
+  const onChangeInput = (text: string) => {
     dispatch(setSearch(text))
     dispatch(setPaginIndex(1))
   }
   const debouncedDispatch = React.useCallback(
-    debounce((text :string) => onChangeInput(text), 350),
+    debounce((text: string) => onChangeInput(text), 350),
     [dispatch]
   )
-  const changeSearch = (text :string) => {
+  const changeSearch = (text: string) => {
     debouncedDispatch(text)
     setFetch(text)
   }
@@ -66,9 +66,9 @@ const Goods: React.FC<GoodsProps> = ({ API_URl }) => {
         alert('Ошибка при получении пицц')
         console.log(err)
       })
-  }, [API_URl, paginIndex, filter.categoryId, search, dispatch])
+  }, [API_URl, dispatch])
 
-  const changePageIndex = (index : number) => {
+  const changePageIndex = (index: number) => {
     if (index > 0 && index <= countPages) {
       dispatch(setPaginIndex(index))
     }
