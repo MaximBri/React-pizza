@@ -23,9 +23,9 @@ const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
   }
   console.log('Goods update...')
   const dispatch = useDispatch()
-  const paginIndex = useSelector(selectPaginIndex)
-  const search = useSelector<any, string>((state) => state.search.value)
-  const filter = useSelector<any, Filter>((state) => state.filters)
+  // const paginIndex = useSelector(selectPaginIndex)
+  // const search = useSelector<any, string>((state) => state.search.value)
+  // const filter = useSelector<any, Filter>((state) => state.filters)
   const [fetch, setFetch] = React.useState<string>('')
   const [loadData, setLoadData] = React.useState<boolean>(true)
   const [countPages, setCountPages] = React.useState<number>(1)
@@ -49,10 +49,12 @@ const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
     debounce((text: string) => onChangeInput(text), 350),
     [dispatch]
   )
-  const changeSearch = (text: string) => {
-    debouncedDispatch(text)
-    setFetch(text)
-  }
+  const changeSearch = React.useCallback(
+    (text: string) => {
+      debouncedDispatch(text)
+      setFetch(text)
+    }, []
+  )
   React.useEffect(() => {
     setLoadData(true)
     axios

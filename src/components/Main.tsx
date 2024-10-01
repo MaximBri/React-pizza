@@ -43,7 +43,13 @@ const Main: React.FC = () => {
     })
     navigate(`?${query}`)
   }, [paginIndex, filter.categoryId, filter.sort.id, navigate])
-
+  const data = useSelector<any, []>((state) => state.basket.items)
+  const first = React.useRef(false);
+  React.useEffect(() => {
+    console.log(data)
+    if(first.current) localStorage.setItem('Pizzas', JSON.stringify(data))
+    first.current = true
+  }, [data])
   return (
     <>
       <Filters />

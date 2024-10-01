@@ -3,7 +3,8 @@ import React from 'react'
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
-const MainLayout: React.FC = () => {
+const MainLayout: React.FC = React.memo(() => {
+  console.log('MainLayput update...')
   return (
     <div className='wrapper'>
       <Header />
@@ -14,6 +15,6 @@ const MainLayout: React.FC = () => {
       </div>
     </div>
   )
-}
+})
 
 export default MainLayout

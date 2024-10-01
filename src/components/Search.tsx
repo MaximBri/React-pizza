@@ -1,4 +1,5 @@
 import React from 'react'
+
 type SearchProps = {
   text: string,
   setText: (str: string) => void,

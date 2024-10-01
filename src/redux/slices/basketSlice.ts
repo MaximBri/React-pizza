@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import {getCountFromLS} from '../../utils/getCountFromLS'
+import {getPriceFromLS} from '../../utils/getPriceFromLS'
+import { getDataFromLS } from '../../utils/getDataFromLS'
+
 interface ItemType {
   id: number
   size: number
@@ -23,9 +27,12 @@ type DeleteType = {
 }
 
 const initialState: ItemsType = {
-  totalPrice: 0,
-  count: 0,
-  items: [],
+  // totalPrice: 0,
+  // count: 0,
+  // items: [],
+  totalPrice: getPriceFromLS(),
+  count: getCountFromLS(),
+  items: getDataFromLS(),
 }
 
 const basketSlice = createSlice({
