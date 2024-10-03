@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { selectPaginIndex, setPaginIndex } from '../redux/slices/paginationSlice'
+import { selectPaginIndex, setPaginIndex } from '../redux/slices/pagination/slice'
 import { useDispatch, useSelector } from 'react-redux'
 
 type PaginationProps = {

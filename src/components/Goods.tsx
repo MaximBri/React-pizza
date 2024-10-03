@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   selectPaginIndex,
   setPaginIndex,
-} from '../redux/slices/paginationSlice'
-import { setSearch } from '../redux/slices/searchSlice'
-import { setPizzas } from '../redux/slices/pizzasSlice'
+} from '../redux/slices/pagination/slice'
+import { setSearch } from '../redux/slices/search/slice'
+import { setPizzas } from '../redux/slices/pizzas/slice'
 import Good from './Good'
 import GoodSceleton from './GoodSceleton'
 import Search from './Search'
 import Pagination from './Pagination'
+import { log } from 'console'
 const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
   type Filter = {
     categoryId: number
@@ -59,9 +60,9 @@ const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
     setLoadData(true)
     axios
       .get(API_URl)
-      .then((data) => {
-        dispatch(setPizzas(data.data.items))
-        setCountPages(data.data.meta.total_pages)
+      .then((res) => {
+        dispatch(setPizzas(res.data.items))
+        setCountPages(res.data.meta.total_pages)
         setLoadData(false)
       })
       .catch((err) => {

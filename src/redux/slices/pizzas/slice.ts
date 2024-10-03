@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-interface ItemType {
-  id: number
-  imageUrl: string
-  title: string
-  price: number
-  sizes: number[]
-  types: number[]
-}
+
 const initialState: {items: ItemType[]} = {
   items: [],
 }

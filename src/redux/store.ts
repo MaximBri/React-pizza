@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import filters from './slices/filtersSlice'
-import pagination from './slices/paginationSlice'
-import search from './slices/searchSlice'
-import basket from './slices/basketSlice'
-import pizzas from './slices/pizzasSlice'
+import filters from './slices/filters/slice'
+import pagination from './slices/pagination/slice'
+import search from './slices/search/slice'
+import basket from './slices/basket/slice'
+import pizzas from './slices/pizzas/slice'
 
 export const store = configureStore({
   reducer: {

@@ -17,10 +17,8 @@ const Header: React.FC = React.memo(() => {
   React.useEffect(() => {
     if (isMounted.current) {
       json = JSON.stringify(basketDataPrice)
-      console.log(json)
       localStorage.setItem('TotalPrice', json)
       json = JSON.stringify(basketDataCount)
-      console.log(json)
       localStorage.setItem('Count', json)
     }
     isMounted.current = true

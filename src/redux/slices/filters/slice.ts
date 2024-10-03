@@ -1,14 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-interface FilterType {
-  categoryId: number
-  sort: {
-    id: number
-    title: string
-    tech: string
-  }
-}
-
 const initialState: FilterType = {
   categoryId: 0,
   sort: {

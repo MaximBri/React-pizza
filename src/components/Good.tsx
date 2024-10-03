@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addGood } from '../redux/slices/basketSlice'
+import { addGood } from '../redux/slices/basket/slice'
 type GoodProps = {
   data: Item
 }
@@ -10,23 +10,30 @@ type Item = {
   id: number
   title: string
   price: number
-  imageUrl: string
   types: []
-  sizes: []
+  sizes: number[]
   category: number
   rating: number
   count: number
 }
 const Good: React.FC<GoodProps> = ({
-  data: { id, title, price, imageUrl, types, sizes, category, rating },
+  data: { id, title, price, types, sizes, count},
 }) => {
   const dispatch = useDispatch()
   const pizzasData = useSelector<any, Item[]>((state) => state.basket.items)
   const heights = ['тонкое', 'традиционное']
   const [size, setSize] = useState(0)
   const [type, setType] = useState(0)
-  const addPizza = () =>
-    dispatch(addGood({ id, price, title, type, size, sizes }))
+  const addPizza = () =>{
+    const item: PizzaItemType = {
+      id: id,
+      price: price,
+      title: title,
+      type: type,
+      size: size,
+      sizes: sizes,
+    };
+    dispatch(addGood(item))}
   let pizzaCount = 0
   pizzasData.map((item: Item) => {
     if (item.id === id) pizzaCount += item.count

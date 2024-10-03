@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setFilters, setCategory } from '../redux/slices/filtersSlice'
-import { setPaginIndex } from '../redux/slices/paginationSlice'
+import { setFilters, setCategory } from '../redux/slices/filters/slice'
+import { setPaginIndex } from '../redux/slices/pagination/slice'
 import filters from '../data/filters'
 import categories from '../data/categories'
 

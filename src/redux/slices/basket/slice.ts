@@ -1,30 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import {getCountFromLS} from '../../utils/getCountFromLS'
-import {getPriceFromLS} from '../../utils/getPriceFromLS'
-import { getDataFromLS } from '../../utils/getDataFromLS'
-
-interface ItemType {
-  id: number
-  size: number
-  type: number
-  price: number
-  title: string
-  sizes: []
-}
-interface ItemsType {
-  totalPrice: number
-  count: number
-  items: ItemTypeWithCount[]
-}
-type ItemTypeWithCount = ItemType & {
-  count: number
-}
-type DeleteType = {
-  id: number
-  size: number
-  type: number
-}
+import { getCountFromLS } from '../../../utils/getCountFromLS'
+import { getPriceFromLS } from '../../../utils/getPriceFromLS'
+import { getDataFromLS } from '../../../utils/getDataFromLS'
 
 const initialState: ItemsType = {
   // totalPrice: 0,
@@ -39,9 +17,9 @@ const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addGood(state, action: PayloadAction<ItemType>) {
+    addGood(state, action: PayloadAction<PizzaItemType>) {
       let check = false
-      const { id, size, type }: ItemType = { ...action.payload }
+      const { id, size, type }: PizzaItemType = { ...action.payload }
       state.items.map((item: ItemTypeWithCount) => {
         if (id === item.id && size === item.size && type === item.type) {
           item.count += 1

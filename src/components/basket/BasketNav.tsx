@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { clearAll } from '../../redux/slices/basketSlice'
+import { clearAll } from '../../redux/slices/basket/slice'
 
 const BasketNav: React.FC = () => {
   const dispatch = useDispatch()

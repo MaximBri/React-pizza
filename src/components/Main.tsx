@@ -9,8 +9,8 @@ import categories from '../data/categories'
 import {
   selectPaginIndex,
   setPaginIndex,
-} from '../redux/slices/paginationSlice'
-import { selectSearch } from '../redux/slices/searchSlice'
+} from '../redux/slices/pagination/slice'
+import { selectSearch } from '../redux/slices/search/slice'
 
 const API_URl: string = 'https://45f0a3a14b0030e3.mokky.dev/Items'
 
@@ -46,7 +46,6 @@ const Main: React.FC = () => {
   const data = useSelector<any, []>((state) => state.basket.items)
   const first = React.useRef(false);
   React.useEffect(() => {
-    console.log(data)
     if(first.current) localStorage.setItem('Pizzas', JSON.stringify(data))
     first.current = true
   }, [data])
