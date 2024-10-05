@@ -34,7 +34,7 @@ const Header: React.FC = React.memo(() => {
           </div>
         </Link>
         <div className='header__cart'>
-          <Link to='React-pizza/basket' className='button button--cart'>
+          <Link to='basket' className='button button--cart'>
             <span>{basketDataPrice} ₽</span>
             <div className='button__delimiter'></div>
             <svg

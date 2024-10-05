@@ -20,7 +20,7 @@ function App() {
             <Route path='/React-pizza' element={<MainLayout />}>
               <Route path='' element={<MainPage />}></Route>
               <Route
-                path='React-pizza/basket'
+                path='basket'
                 element={
                   <React.Suspense fallback={<div>Загрузка...</div>}>
                     <BasketPage />
