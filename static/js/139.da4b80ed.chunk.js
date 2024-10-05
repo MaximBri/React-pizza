@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpizza_v2=self.webpackChunkpizza_v2||[]).push([[139],{8139:(e,s,a)=>{a.r(s),a.d(s,{default:()=>h});a(5043);var c=a(579);const h=()=>(0,c.jsx)("h1",{children:"\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u0430("})}}]);
+//# sourceMappingURL=139.da4b80ed.chunk.js.map
