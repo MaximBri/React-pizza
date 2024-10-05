@@ -5,8 +5,6 @@ import { Provider } from 'react-redux'
 import { store } from './redux/store'
 
 import MainPage from './pages/MainPage'
-// import BasketPage from './pages/BascetPage'
-// import NotFoundPage from './pages/NotFoundPage'
 import MainLayout from './layouts/MainLayout'
 
 const BasketPage = React.lazy(() => import('./pages/BascetPage'))

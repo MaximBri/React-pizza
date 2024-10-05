@@ -8,11 +8,7 @@ import {
 } from '../redux/slices/pagination/slice'
 import { setSearch } from '../redux/slices/search/slice'
 import { setPizzas } from '../redux/slices/pizzas/slice'
-import Good from './Good'
-import GoodSceleton from './GoodSceleton'
-import Search from './Search'
-import Pagination from './Pagination'
-import { log } from 'console'
+import { Good, GoodSceleton, Search, Pagination } from '../components'
 const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
   type Filter = {
     categoryId: number
@@ -50,12 +46,10 @@ const Goods: React.FC<{ API_URl: string }> = ({ API_URl }) => {
     debounce((text: string) => onChangeInput(text), 350),
     [dispatch]
   )
-  const changeSearch = React.useCallback(
-    (text: string) => {
-      debouncedDispatch(text)
-      setFetch(text)
-    }, []
-  )
+  const changeSearch = React.useCallback((text: string) => {
+    debouncedDispatch(text)
+    setFetch(text)
+  }, [])
   React.useEffect(() => {
     setLoadData(true)
     axios

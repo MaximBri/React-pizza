@@ -4,7 +4,6 @@ import ContentLoader from 'react-content-loader'
 const GoodSceleton:React.FC = () => {
   const [width, setWidth] = useState<number>(280)
   const [height, setHeight] = useState<number>(190)
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -15,15 +14,12 @@ const GoodSceleton:React.FC = () => {
         setHeight(190)
       }
     }
-
     window.addEventListener('resize', handleResize)
-    handleResize() // Вызываем сразу при монтировании компонента
-
+    handleResize() 
     return () => {
       window.removeEventListener('resize', handleResize)
     }
   }, [])
-
   return (
     <ContentLoader
       speed={2}
